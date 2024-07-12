@@ -1,80 +1,184 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
+
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+        @if (session('status'))
+            <div class="container-scroller">
+                <!-- partial:../../partials/_navbar.html -->
+                @include('layouts.navbar')
+                <!-- partial -->
+                <div class="container-fluid page-body-wrapper">
+                    <!-- partial:../../partials/_sidebar.html -->
+                    {{-- <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                    <ul class="nav">
+                        <li class="nav-item nav-profile">
+                            <a href="#" class="nav-link">
+                                <div class="nav-profile-image">
+                                    <img src="../../assets/images/faces/face1.jpg" alt="profile" />
+                                    <span class="login-status online"></span>
+                                    <!--change to offline or busy as needed-->
                                 </div>
-                            </li>
-                        @endguest
+                                <div class="nav-profile-text d-flex flex-column">
+                                    <span class="font-weight-bold mb-2">David Grey. H</span>
+                                    <span class="text-secondary text-small">Project Manager</span>
+                                </div>
+                                <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../index.html">
+                                <span class="menu-title">Dashboard</span>
+                                <i class="mdi mdi-home menu-icon"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                                aria-controls="ui-basic">
+                                <span class="menu-title">Basic UI Elements</span>
+                                <i class="menu-arrow"></i>
+                                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                            </a>
+                            <div class="collapse" id="ui-basic">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="../../pages/ui-features/buttons.html">Buttons</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="../../pages/ui-features/dropdowns.html">Dropdowns</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link"
+                                            href="../../pages/ui-features/typography.html">Typography</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false"
+                                aria-controls="icons">
+                                <span class="menu-title">Icons</span>
+                                <i class="mdi mdi-contacts menu-icon"></i>
+                            </a>
+                            <div class="collapse" id="icons">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="../../pages/icons/font-awesome.html">Font
+                                            Awesome</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="#forms" aria-expanded="false"
+                                aria-controls="forms">
+                                <span class="menu-title">Forms</span>
+                                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                            </a>
+                            <div class="collapse" id="forms">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="../../pages/forms/basic_elements.html">Form
+                                            Elements</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false"
+                                aria-controls="charts">
+                                <span class="menu-title">Charts</span>
+                                <i class="mdi mdi-chart-bar menu-icon"></i>
+                            </a>
+                            <div class="collapse" id="charts">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="../../pages/charts/chartjs.html">ChartJs</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false"
+                                aria-controls="tables">
+                                <span class="menu-title">Tables</span>
+                                <i class="mdi mdi-table-large menu-icon"></i>
+                            </a>
+                            <div class="collapse" id="tables">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="../../pages/tables/basic-table.html">Basic table</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false"
+                                aria-controls="auth">
+                                <span class="menu-title">User Pages</span>
+                                <i class="menu-arrow"></i>
+                                <i class="mdi mdi-lock menu-icon"></i>
+                            </a>
+                            <div class="collapse" id="auth">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="../../pages/samples/blank-page.html"> Blank Page
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="../../pages/samples/login.html"> Login </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="../../pages/samples/register.html"> Register </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="../../pages/samples/error-404.html"> 404 </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="../../pages/samples/error-500.html"> 500 </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../docs/documentation.html" target="_blank">
+                                <span class="menu-title">Documentation</span>
+                                <i class="mdi mdi-file-document-box menu-icon"></i>
+                            </a>
+                        </li>
                     </ul>
+                </nav> --}}
+                    <!-- partial -->
+                    <div class="main-panel">
+                        <div class="content-wrapper">
+                            @yield('content')
+                        </div>
+                        <!-- content-wrapper ends -->
+                        <!-- partial:../../partials/_footer.html -->
+                        @include('layouts.footer')
+                        <!-- partial -->
+                    </div>
+                    <!-- main-panel ends -->
                 </div>
+                <!-- page-body-wrapper ends -->
             </div>
-        </nav>
-
-        <main class="py-4">
+        @else
             @yield('content')
-        </main>
+        @endif
     </div>
 </body>
+
 </html>

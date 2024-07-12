@@ -7,16 +7,36 @@
 import './bootstrap';
 import { createApp } from 'vue';
 
+
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
  * registering components with the application instance so they are ready
  * to use in your application's views. An example is included for you.
- */
+*/
 
 const app = createApp({});
+const appvendorBundleBase = createApp({});
+const appoffCanvas = createApp({});
+const appmisc = createApp({});
+const appsettings = createApp({});
+const apptodolist = createApp({});
+const appjqueryCookie = createApp({});
 
 import ExampleComponent from './components/ExampleComponent.vue';
+import vendorBundleBase from '../vendors/js/vendor.bundle.base';
+import offCanvas from '../js/purple/off-canvas';
+import misc from '../js/purple/misc';
+import settings from '../js/purple/settings';
+import todolist from '../js/purple/todolist';
+import jqueryCookie from '../js/purple/jquery.cookie';
+
 app.component('example-component', ExampleComponent);
+appvendorBundleBase.component('vendorBundleBase', vendorBundleBase);
+appoffCanvas.component('offCanvas', offCanvas);
+appmisc.component('misc', misc);
+appsettings.component('settings', settings);
+apptodolist.component('todolist', todolist);
+appjqueryCookie.component('jqueryCookie', jqueryCookie);
 
 /**
  * The following block of code may be used to automatically register your

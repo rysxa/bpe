@@ -6,3 +6,10 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+// Vendors
+@import '../vendors/mdi/css/materialdesignicons.min.css';
+@import '../vendors/ti-icons/css/themify-icons.css';
+@import '../vendors/css/vendor.bundle.base.css';
+@import '../vendors/font-awesome/css/font-awesome.min.css';
+@import '../css/style.css';
