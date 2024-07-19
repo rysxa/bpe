@@ -14,11 +14,14 @@
                             <h6 class="font-weight-light">Sign in to continue.</h6>
                             <form class="pt-3" method="POST" method="POST" action="{{ route('register') }}">
                                 @csrf
+                                
+                                <input name="role" value="99" hidden>
+                                <input name="status" value="0" hidden>
                                 <div class="form-group">
                                     <input type="text"
                                         class="form-control form-control-lg @error('name') is-invalid @enderror"
-                                        id="name" placeholder="{{ __('Name') }}" value="{{ old('name') }}"
-                                        required autocomplete="name" autofocus>
+                                        id="name" name="name" placeholder="{{ __('Name') }}"
+                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -26,10 +29,10 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="password"
+                                    <input type="email"
                                         class="form-control form-control-lg @error('email') is-invalid @enderror"
-                                        id="email" placeholder="{{ __('Email Address') }}" value="{{ old('email') }}"
-                                        required autocomplete="email" autofocus>
+                                        id="email" name="email" placeholder="{{ __('Email Address') }}"
+                                        value="{{ old('email') }}" required autocomplete="email" autofocus>
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -39,8 +42,8 @@
                                 <div class="form-group">
                                     <input type="password"
                                         class="form-control form-control-lg @error('password') is-invalid @enderror"
-                                        id="password" placeholder="{{ __('Password') }}" value="{{ old('password') }}"
-                                        required autocomplete="password" autofocus>
+                                        id="password" name="password" placeholder="{{ __('Password') }}"
+                                        value="{{ old('password') }}" required autocomplete="password" autofocus>
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -49,10 +52,10 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="password"
-                                        class="form-control form-control-lg @error('password') is-invalid @enderror"
+                                        class="form-control form-control-lg @error('password_confirmation') is-invalid @enderror"
                                         id="password-confirm" name="password_confirmation"
                                         placeholder="{{ __('Confirm Password') }}" required autocomplete="new-password">
-                                    @error('password')
+                                    @error('password_confirmation')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
