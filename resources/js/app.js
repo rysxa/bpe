@@ -6,7 +6,11 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
+// import $ from 'jquery';
+// import 'jquery';
 
+// // initiate
+// window.$ = window.jQuery = $;
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
