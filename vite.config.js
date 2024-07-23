@@ -9,6 +9,7 @@ export default defineConfig({
             input: [
                 'resources/sass/app.scss',
                 'resources/js/app.js',
+                'resources/vendors/js/vendor.bundle.base.js',
             ],
             refresh: true,
         }),
@@ -24,7 +25,7 @@ export default defineConfig({
     server: {
         host: '0.0.0.0',
         hmr: {
-            host: 'localhost',
+            host: '127.0.0.1',
         },
     },
     resolve: {

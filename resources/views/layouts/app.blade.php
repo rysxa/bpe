@@ -43,15 +43,6 @@
             @yield('content')
         @endif
     </div>
-    <script>
-        import $ from 'jquery';
-
-        // Contoh penggunaan jQuery
-        $(document).ready(function() {
-            console.log('jQuery is working!');
-        });
-    </script>
-    @vite(['../resources/assets/js/purple/jquery.cookie.js'])
 </body>
 
 </html>

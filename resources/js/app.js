@@ -4,8 +4,15 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+import $ from 'jquery';
 import './bootstrap';
 import { createApp } from 'vue';
+
+// import 'bootstrap';
+
+// initiate
+window.$ = window.jQuery = $;
+window.bootstrap = bootstrap;
 // import $ from 'jquery';
 // import 'jquery';
 
@@ -26,13 +33,13 @@ const appsettings = createApp({});
 const apptodolist = createApp({});
 const appjqueryCookie = createApp({});
 
-import ExampleComponent from './components/ExampleComponent.vue';
-import vendorBundleBase from '../vendors/js/vendor.bundle.base';
-import offCanvas from '../js/purple/off-canvas';
-import misc from '../js/purple/misc';
-import settings from '../js/purple/settings';
-import todolist from '../js/purple/todolist';
-import jqueryCookie from '../js/purple/jquery.cookie';
+import * as ExampleComponent from './components/ExampleComponent.vue';
+import * as vendorBundleBase from '../vendors/js/vendor.bundle.base';
+import * as offCanvas from '../js/purple/off-canvas';
+import * as misc from '../js/purple/misc';
+import * as settings from '../js/purple/settings';
+import * as todolist from '../js/purple/todolist';
+import * as jqueryCookie from '../js/purple/jquery.cookie';
 
 app.component('example-component', ExampleComponent);
 appvendorBundleBase.component('vendorBundleBase', vendorBundleBase);
