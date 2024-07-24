@@ -41,17 +41,16 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Users</h4>
+                        <h4 class="card-title">Deposit</h4>
+                        <a href="{{ route('inventory.deposits.create') }}" class="btn btn-gradient-primary me-2">Add Deposit</a>
                         </p>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Status</th>
-                                    <th>Join Date</th>
-                                    <th></th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th width="280px"></th>
                                 </tr>
                             </thead>
                             <tbody>
