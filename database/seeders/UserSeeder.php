@@ -44,7 +44,7 @@ class UserSeeder extends Seeder
             'name' => 'Doctor',
             'email' => 'doctor@bpe.com',
             'password' => Hash::make('PlmQaz012'),
-            'role_id' => 3,
+            'role_id' => 4,
             'status' => 1
         ]);
     }

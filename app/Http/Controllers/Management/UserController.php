@@ -49,7 +49,7 @@ class UserController extends Controller
         return redirect()->route('management.user.index');
     }
     
-    public function delete()
+    public function destroy()
     {
         $user = User::find(request()->id);
         if (!$user) {

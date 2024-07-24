@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Inventory\DepositController;
+use App\Http\Controllers\Management\StockController;
 use App\Http\Controllers\Management\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +31,11 @@ Route::prefix('/')->middleware('auth')->group(function () {
             Route::get('/', [UserController::class, 'index'])->name('index');
             Route::get('/edit', [UserController::class, 'edit'])->name('edit');
             Route::put('/update', [UserController::class, 'update'])->name('update');
-            Route::delete('/delete', [UserController::class, 'delete'])->name('delete');
+            Route::delete('/delete', [UserController::class, 'destroy'])->name('delete');
         });
+        Route::resource('stocks', StockController::class);
+    });
+    Route::prefix('/inventory')->name('inventory.')->group(function () {
+        Route::resource('deposits', DepositController::class);
     });
 });
