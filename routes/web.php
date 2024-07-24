@@ -29,6 +29,7 @@ Route::prefix('/')->middleware('auth')->group(function () {
             Route::get('/', [UserController::class, 'index'])->name('index');
             Route::get('/edit', [UserController::class, 'edit'])->name('edit');
             Route::put('/update', [UserController::class, 'update'])->name('update');
+            Route::delete('/delete', [UserController::class, 'delete'])->name('delete');
         });
     });
 });

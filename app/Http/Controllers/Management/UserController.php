@@ -29,22 +29,35 @@ class UserController extends Controller
 
     public function update()
     {
+        $validatedData = request()->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'role' => 'required|integer',
+            'status' => 'required|integer',
+        ]);
+
         $user = User::find(request()->id);
-        $user->name = request()->name;
-        $user->email = request()->email;
-        $user->password = Hash::make(request('password'));
-        $user->role_id = request()->role;
-        $user->status = request()->status;
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+        $user->password = Hash::make($validatedData['password']);
+        $user->role_id =intval($validatedData['role']);
+        $user->status = intval($validatedData['status']);
         $user->updated_at = now();
-        $role = Roles::all();
+        $user->save();
 
-        if (request('name') && request('email') && request('password') && request('role') && request('status')) {
-            $user->save();
-        } else {
-            abort(400, 'Tidak ada data yang diubah.');
-        }
-
-        return view('management.user.edit', compact('user', 'role'));
+        return redirect()->route('management.user.index');
     }
     
+    public function delete()
+    {
+        $user = User::find(request()->id);
+        if (!$user) {
+            abort(404);
+        }
+
+        $user->delete();
+
+        return redirect()->route('management.user.index');
+    }
 }

@@ -12,8 +12,8 @@
             <div class="card-body">
                 <h4 class="card-title">Edit User</h4>
                 <form class="forms-sample" method="POST" action="{{ route('management.user.update', ['id' => $user->id]) }}">
-                    @method('PUT')
                     @csrf
+                    @method('PUT')
 
                     <input type="text" name="password" value="{{ old('password', $user->password) }}" hidden>
                     <x-form.input name="name" label="Name" valueId="{{ $user->name }}" />
