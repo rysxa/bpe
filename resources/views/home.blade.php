@@ -43,7 +43,13 @@
                 $icon = $data[1];
             @endphp
         <div class="col-md-2 stretch-card grid-margin">
-            <div class="card bg-gradient-success card-img-holder">
+            @if ($quantity == 0 || $quantity < 0)
+                <div class="card bg-gradient-danger card-img-holder">
+            @elseif ($quantity <= 200)
+                <div class="card bg-gradient-warning card-img-holder">
+            @elseif ($quantity > 200)
+                <div class="card bg-gradient-success card-img-holder">
+            @endif
                 <div class="card-body">
                     <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">{{ $productName }} <i class="fa fa-{{ $icon }} mdi-24px float-end"></i>
@@ -51,16 +57,17 @@
                     @if ($quantity < 0)
                         <h2 class="mb-5">{{ $quantity }}</h2>
                         <h6 class="card-text">Minus Stock</h6>
-                    @elseif ($quantity > 0 && $quantity <= 200)
-                        <h2 class="mb-5">{{ $quantity }}</h2>
-                        <h6 class="card-text">Almost out of Stock</h6>
-                    @elseif ($quantity >= 200)
-                        <h2 class="mb-5">{{ $quantity }}</h2>
-                        <h6 class="card-text">Available Stock</h6>
-                    @else
+                    @elseif ($quantity == 0)
                         <h2 class="mb-5">{{ $quantity }}</h2>
                         <h6 class="card-text">Empty Stocks</h6>
+                    @elseif ($quantity <= 200)
+                        <h2 class="mb-5">{{ $quantity }}</h2>
+                        <h6 class="card-text">Almost out of Stock</h6>
+                    @else
+                        <h2 class="mb-5">{{ $quantity }}</h2>
+                        <h6 class="card-text">Available Stock</h6>
                     @endif
+                    <small>{{ now() }}</small>
                 </div>
             </div>
         </div>

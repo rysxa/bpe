@@ -33,8 +33,8 @@ class HomeController extends Controller
             $depositTotalQty = Deposits::where('product_id', $product->id)->sum('qty');
             $withdrawTotalQty = Withdraws::where('product_id', $product->id)->sum('qty');
             $totalQty[$product->name] = [
-                'qty' => $depositTotalQty - $withdrawTotalQty,
-                'icon' => $product->icon
+                $depositTotalQty - $withdrawTotalQty,
+                $product->icon
             ];
         }
         

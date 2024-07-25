@@ -20,7 +20,7 @@ class ProductSeeder extends Seeder
             'capital_price' => 2500,
             'deposit_price' => 6000,
             'sales_price' => 15000,
-            'icon' => 'fa-medkit',
+            'icon' => 'medkit',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -30,7 +30,7 @@ class ProductSeeder extends Seeder
             'capital_price' => 15000,
             'deposit_price' => 16000,
             'sales_price' => 35000,
-            'icon' => 'fa-pills',
+            'icon' => 'pills',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
