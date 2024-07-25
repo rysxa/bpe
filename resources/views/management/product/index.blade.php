@@ -17,17 +17,19 @@
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Quantity</th>
-                                    <th>Price</th>
+                                    <th>EMS Price</th>
+                                    <th>Clinic Price</th>
+                                    <th>Sales Price</th>
                                     <th width="280px"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($stocks as $item)
+                                @foreach ($data as $item)
                                     <tr>
                                         <td>{{ $item->name }}</td>
-                                        <td>{{ $item->qty }}</td>
-                                        <td>{!! \App\Libraries\Utils::u_Price($item->price) !!}</td>
+                                        <td>{!! \App\Libraries\Utils::u_Price($item->capital_price) !!}</td>
+                                        <td>{!! \App\Libraries\Utils::u_Price($item->deposit_price) !!}</td>
+                                        <td>{!! \App\Libraries\Utils::u_Price($item->sales_price) !!}</td>
                                         <td>
                                             <x-button.show
                                                 url="{{ route('management.products.show', ['product' => $item->id]) }}"></x-button.show>

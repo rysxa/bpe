@@ -31,14 +31,19 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'qty' => 'required|integer',
-            'price' => 'required|numeric'
+            'capital_price' => 'required|integer',
+            'deposit_price' => 'required|integer',
+            'sales_price' => 'required|integer',
+            'icon' => 'required',
+            'updated_at' => now()
         ]);
 
         Products::insert([
             'name' => $request->name,
-            'qty' => intval($request->qty),
-            'price' => intval($request->price),
+            'capital_price' => intval($request->capital_price),
+            'deposit_price' => intval($request->deposit_price),
+            'sales_price' => intval($request->sales_price),
+            'icon' => $request->icon,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -48,32 +53,48 @@ class ProductController extends Controller
     public function show()
     {
         $title = $this->title;
-        $stock = Products::find(request()->withdraw);
+        $stock = Products::find(request()->product);
         return view('management.product.show', compact('stock', 'title'));
     }
 
     public function edit()
     {
         $title = $this->title;
-        $stock = Products::find(request()->withdraw);
+        $stock = Products::find(request()->product);
         return view('management.product.edit', compact('stock', 'title'));
     }
 
-    public function update(Request $request, Products $stock)
+    public function update(Request $request)
     {
         $request->validate([
             'name' => 'required',
-            'qty' => 'required|integer',
-            'price' => 'required|numeric',
+            'capital_price' => 'required|integer',
+            'deposit_price' => 'required|integer',
+            'sales_price' => 'required|integer',
+            'icon' => 'required',
             'updated_at' => now()
         ]);
 
-        $stock->update($request->all());
+        $stock = Products::findOrFail(request()->product);
+
+        $stock->update([
+            'name' => $request->name,
+            'capital_price' => intval($request->capital_price),
+            'deposit_price' => intval($request->deposit_price),
+            'sales_price' => intval($request->sales_price),
+            'icon' => $request->icon,
+            'updated_at' => now(),
+        ]);
         return redirect()->route('management.products.index')->with('success', $this->title . ' updated successfully.');
     }
 
-    public function destroy(Products $stock)
+    public function destroy()
     {
+        $stock = Products::find(request()->product);
+        if (!$stock) {
+            abort(404);
+        }
+
         $stock->delete();
         return redirect()->route('management.products.index')->with('success', $this->title . ' deleted successfully.');
     }

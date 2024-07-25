@@ -20,8 +20,8 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Role</th>
-                                    <th>Status</th>
                                     <th>Join Date</th>
+                                    <th>Status</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -31,7 +31,7 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->m_roles->name }}</td>
-                                        <td>{{ $item->created_at }}</td>
+                                        <td>{!! \App\Libraries\Utils::u_Date($item->created_at) !!}</td>
                                         <td>{!! \App\Libraries\Status::GetStatus($item->status) !!}</td>
                                         <td>
                                             <x-button.edit

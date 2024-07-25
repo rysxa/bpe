@@ -35,10 +35,10 @@ Route::prefix('/')->middleware('auth')->group(function () {
             Route::put('/update', [UserController::class, 'update'])->name('update');
             Route::delete('/delete', [UserController::class, 'destroy'])->name('delete');
         });
+        Route::resource('products', ProductController::class);
     });
     Route::prefix('/inventory')->name('inventory.')->group(function () {
         Route::resource('deposits', DepositController::class);
         Route::resource('withdraws', WithdrawController::class);
-        Route::resource('products', ProductController::class);
     });
 });

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-md-4 stretch-card grid-margin">
             <div class="card bg-gradient-danger card-img-holder text-white">
                 <div class="card-body">
@@ -35,18 +35,35 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="row">
-        <div class="col-md-3 stretch-card grid-margin">
-            <div class="card bg-gradient-warning card-img-holder">
+        @foreach ($totalQty as $productName => $data)
+            @php
+                $quantity = $data[0];
+                $icon = $data[1];
+            @endphp
+        <div class="col-md-2 stretch-card grid-margin">
+            <div class="card bg-gradient-success card-img-holder">
                 <div class="card-body">
                     <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                    <h4 class="font-weight-normal mb-3">Zat Besi <i class="mdi mdi-drupal mdi-24px float-end"></i>
+                    <h4 class="font-weight-normal mb-3">{{ $productName }} <i class="fa fa-{{ $icon }} mdi-24px float-end"></i>
                     </h4>
-                    <h2 class="mb-5">6334</h2>
-                    <h6 class="card-text">Decreased by 10%</h6>
+                    @if ($quantity < 0)
+                        <h2 class="mb-5">{{ $quantity }}</h2>
+                        <h6 class="card-text">Minus Stock</h6>
+                    @elseif ($quantity > 0 && $quantity <= 200)
+                        <h2 class="mb-5">{{ $quantity }}</h2>
+                        <h6 class="card-text">Almost out of Stock</h6>
+                    @elseif ($quantity >= 200)
+                        <h2 class="mb-5">{{ $quantity }}</h2>
+                        <h6 class="card-text">Available Stock</h6>
+                    @else
+                        <h2 class="mb-5">{{ $quantity }}</h2>
+                        <h6 class="card-text">Empty Stocks</h6>
+                    @endif
                 </div>
             </div>
         </div>
+        @endforeach
     </div>
 @endsection
