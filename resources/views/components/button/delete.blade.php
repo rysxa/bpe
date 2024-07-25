@@ -1,3 +1,4 @@
+
 <button type="button" class="btn icon-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $id }}">
     <i class="fa fa-trash-o"></i>
 </button>
@@ -17,7 +18,11 @@
             </div>
             <div class="modal-footer" style="border: none;">
                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">No</button>
-                <a href="{{ $url }}" class="btn btn-gradient-primary me-2">Yes</a>
+                <form class="forms-sample" method="POST" action="{{ $url }}">
+                    @csrf
+                    @method('DELETE')
+                    <a type="submit" class="btn btn-gradient-primary me-2">Delete</a>
+                </form>
             </div>
         </div>
     </div>

@@ -37,8 +37,8 @@ class WithdrawController extends Controller
         ]);
 
         Withdraws::insert([
-            'product_id' => intval($request->product),
             'user_id' => Auth::id(),
+            'product_id' => intval($request->product),
             'qty' => intval($request->qty),
             'created_at' => now(),
             'updated_at' => now(),
@@ -56,30 +56,36 @@ class WithdrawController extends Controller
     public function edit()
     {
         $title = $this->title;
+        $product = Products::all();
         $stock = Withdraws::find(request()->withdraw);
-        return view('inventory.withdraw.edit', compact('stock', 'title'));
+        return view('inventory.withdraw.edit', compact('stock', 'title', 'product'));
     }
 
-    public function update(Request $request, Withdraws $stock)
+    public function update(Request $request)
     {
         $request->validate([
-            'qty' => 'required|integer'
+            'qty' => 'required|integer',
+            'product' => 'required|exists:products,id'
         ]);
 
-        $withdraw = [
-            'product_id' => intval($request->product),
-            'user_id' => Auth::id(),
-            'qty' => intval($request->qty),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ];
+        $stock = Withdraws::findOrFail(request()->withdraw);
 
-        $stock->update($withdraw);
+        $stock->update([
+            'user_id' => Auth::id(),
+            'product_id' => $request->product,
+            'qty' => $request->qty,
+            'updated_at' => now(),
+        ]);
         return redirect()->route('inventory.withdraws.index')->with('success', $this->title . ' updated successfully.');
     }
 
-    public function destroy(Withdraws $stock)
+    public function destroy()
     {
+        $stock = Withdraws::find(request()->withdraw);
+        if (!$stock) {
+            abort(404);
+        }
+
         $stock->delete();
         return redirect()->route('inventory.withdraws.index')->with('success', $this->title . ' deleted successfully.');
     }

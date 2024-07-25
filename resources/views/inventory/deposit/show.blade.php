@@ -10,7 +10,7 @@
                         <x-form.read name="name" label="Name" valueId="{{ $stock->name }}" />
                         <x-form.read name="qty" label="Quantity" valueId="{{ $stock->qty }}" />
                         <x-form.read name="price" label="Price" valueId="{!! \App\Libraries\Utils::u_Price($stock->price) !!}" />
-                        <x-button.back />
+                        <x-button.back url="{{ route('inventory.deposits.index') }}" />
                     </form>
                 </div>
             </div>

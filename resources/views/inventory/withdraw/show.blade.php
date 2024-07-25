@@ -7,10 +7,11 @@
                 <div class="card-body">
                     <form class="forms-sample">
                         <x-form.read name="name" label="Create Date" valueId="{!! \App\Libraries\Utils::u_DateTime($stock->created_at) !!}" />
-                        <x-form.read name="name" label="Name" valueId="{{ $stock->name }}" />
+                        <x-form.read name="name" label="Name" valueId="{{ $stock->m_user->name }}" />
+                        <x-form.read name="product" label="Product" valueId="{{ $stock->m_product->name }}" />
                         <x-form.read name="qty" label="Quantity" valueId="{{ $stock->qty }}" />
-                        <x-form.read name="price" label="Price" valueId="{!! \App\Libraries\Utils::u_Price($stock->price) !!}" />
-                        <x-button.back />
+                        <x-form.read name="price" label="Price" valueId="{!! \App\Libraries\Utils::u_Price($stock->m_product->deposit_price) !!}" />
+                        <x-button.back url="{{ route('inventory.withdraws.index') }}" />
                     </form>
                 </div>
             </div>

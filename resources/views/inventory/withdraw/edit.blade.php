@@ -9,10 +9,16 @@
                     <form class="forms-sample" method="POST" action="{{ route('inventory.withdraws.update', $stock->id) }}">
                         @csrf
                         @method('PUT')
-
-                        <x-form.input name="name" label="Name" valueId="{{ $stock->name }}" />
-                        <x-form.input name="qty" label="Quantity" valueId="{{ $stock->qty }}" />
-                        <x-form.input name="price" label="Price" valueId="{{ $stock->price }}" />
+                        
+                        <x-form.read name="name" label="Name" valueId="{{ $stock->m_user->name }}" />
+                        <x-form.select name="product" label="Product">
+                            @foreach ($product as $items)
+                                <option value="{{ $items->id }}" {{ $stock->product_id == $items->id ? 'selected' : '' }}>
+                                    {{ $items->name }}</option>
+                            @endforeach
+                        </x-form.select>
+                            <x-form.input name="qty" label="Quantity" valueId="{{ $stock->qty }}" />
+                        <x-form.input name="price" label="Price" valueId="{{ $stock->m_product->deposit_price }}" />
                         <x-button.submit />
                     </form>
                 </div>

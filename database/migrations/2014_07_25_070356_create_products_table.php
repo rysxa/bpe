@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('capital_price');
             $table->integer('deposit_price');
             $table->integer('sales_price');
+            $table->integer('sales_price');
             $table->timestamps();
         });
     }
