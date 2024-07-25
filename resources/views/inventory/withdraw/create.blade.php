@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="col-md-6 grid-margin stretch-card justify-content-center">
+        <h2>Create Withdraw</h2>
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Create Deposit</h4>
-                <form class="forms-sample" method="POST" action="{{ route('inventory.deposits.store') }}">
+                <form class="forms-sample" method="POST" action="{{ route('inventory.withdraws.store') }}">
                     @csrf
 
                     <x-form.input name="name" label="Name" valueId="" />

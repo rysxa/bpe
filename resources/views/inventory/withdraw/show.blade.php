@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <h2>Inventory Form</h2>
+        <h2>Withdraw Form</h2>
         <div class="col-md-6 card bg-gradient-info card-img-holder text-white justify-content-center">
             <div class="card">
                 <div class="card-body">

@@ -2,12 +2,11 @@
 
 @section('content')
     <div class="container">
-        <h2>Edit Stock</h2>
+        <h2>Edit Withdraw</h2>
         <div class="col-md-6 grid-margin stretch-card justify-content-center">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Edit Deposit</h4>
-                    <form class="forms-sample" method="POST" action="{{ route('inventory.deposits.update', $stock->id) }}">
+                    <form class="forms-sample" method="POST" action="{{ route('inventory.withdraws.update', $stock->id) }}">
                         @csrf
                         @method('PUT')
 

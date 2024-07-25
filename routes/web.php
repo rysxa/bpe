@@ -37,5 +37,6 @@ Route::prefix('/')->middleware('auth')->group(function () {
     });
     Route::prefix('/inventory')->name('inventory.')->group(function () {
         Route::resource('deposits', DepositController::class);
+        Route::resource('withdraws', DepositController::class);
     });
 });

@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Deposits extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'id',
+        'name',
+        'qty',
+        'price'
+    ];
 }

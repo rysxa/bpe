@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
-use App\Models\Deposits;
+use App\Models\Withdraws;
 use Illuminate\Http\Request;
 
-class DepositController extends Controller
+class WithdrawController extends Controller
 {
     public function index()
     {
-        $stocks = Deposits::all();
-        return view('inventory.deposit.index', compact('stocks'));
+        $stocks = Withdraws::all();
+        return view('inventory.withdraw.index', compact('stocks'));
     }
 
     public function create()
     {
-        return view('inventory.deposit.create');
+        return view('inventory.withdraw.create');
     }
 
     public function store(Request $request)
@@ -27,29 +27,29 @@ class DepositController extends Controller
             'price' => 'required|numeric'
         ]);
 
-        Deposits::insert([
+        Withdraws::insert([
             'name' => $request->name,
             'qty' => intval($request->qty),
             'price' => intval($request->price),
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-        return redirect()->route('inventory.deposits.index')->with('success', 'Deposit created successfully.');
+        return redirect()->route('inventory.withdraws.index')->with('success', 'Withdraw created successfully.');
     }
 
     public function show()
     {
-        $stock = Deposits::find(request()->deposit);
-        return view('inventory.deposit.show', compact('stock'));
+        $stock = Withdraws::find(request()->withdraw);
+        return view('inventory.withdraw.show', compact('stock'));
     }
 
     public function edit()
     {
-        $stock = Deposits::find(request()->deposit);
-        return view('inventory.deposit.edit', compact('stock'));
+        $stock = Withdraws::find(request()->withdraw);
+        return view('inventory.withdraw.edit', compact('stock'));
     }
 
-    public function update(Request $request, Deposits $stock)
+    public function update(Request $request, Withdraws $stock)
     {
         $request->validate([
             'name' => 'required',
@@ -59,12 +59,12 @@ class DepositController extends Controller
         ]);
 
         $stock->update($request->all());
-        return redirect()->route('inventory.deposits.index')->with('success', 'Stock updated successfully.');
+        return redirect()->route('inventory.withdraws.index')->with('success', 'Withdraw updated successfully.');
     }
 
-    public function destroy(Deposits $stock)
+    public function destroy(Withdraws $stock)
     {
         $stock->delete();
-        return redirect()->route('inventory.deposits.index')->with('success', 'Stock deleted successfully.');
+        return redirect()->route('inventory.withdraws.index')->with('success', 'Withdraw deleted successfully.');
     }
 }

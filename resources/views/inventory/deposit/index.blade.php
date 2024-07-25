@@ -42,7 +42,8 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Deposit</h4>
-                        <a href="{{ route('inventory.deposits.create') }}" class="btn btn-gradient-primary me-2">Add Deposit</a>
+                        <a href="{{ route('inventory.deposits.create') }}" class="btn btn-gradient-primary me-2">Add
+                            Deposit</a>
                         </p>
                         <table class="table table-striped">
                             <thead>
@@ -58,44 +59,15 @@
                                     <tr>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->qty }}</td>
-                                        <td>{{ $item->price }}</td>
+                                        <td>{!! \App\Libraries\Utils::u_Price($item->price) !!}</td>
                                         <td>
-                                            <a href="{{ route('inventory.deposits.edit', ['id' => $item->id]) }}"
-                                                class="btn icon-sm">
-                                                <i class="fa fa-pencil"></i>
-                                            </a>
-                                            <a class="btn btn-info"
-                                                href="{{ route('inventory.deposits.show', $stock->id) }}">Show</a>
-                                            <button type="button" class="btn icon-sm" data-bs-toggle="modal"
-                                                data-bs-target="#deleteModal{{ $item->id }}">
-                                                <i class="fa fa-trash-o"></i>
-                                            </button>
+                                            <x-button.show
+                                                url="{{ route('inventory.deposits.show', ['deposit' => $item->id]) }}"></x-button.show>
+                                            <x-button.edit
+                                                url="{{ route('inventory.deposits.edit', $item->id) }}"></x-button.edit>
+                                            <x-button.delete id="{{ $item->id }}" :url="route('inventory.deposits.destroy', ['deposit' => $item->id])"></x-button.delete>
                                         </td>
                                     </tr>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1"
-                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header" style="border: none;">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Hapus
-                                                    </h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Apakah Anda yakin ingin menghapus data ini?
-                                                </div>
-                                                <div class="modal-footer" style="border: none;">
-                                                    <button type="button" class="btn btn-light"
-                                                        data-bs-dismiss="modal">Tidak</button>
-                                                    <a href="{{ route('inventory.deposits.delete', ['id' => $item->id]) }}"
-                                                        class="btn btn-gradient-primary me-2">Ya</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 @endforeach
                             </tbody>
                         </table>

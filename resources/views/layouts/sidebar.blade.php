@@ -51,6 +51,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('inventory.deposits.index') }}">Deposit</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('inventory.withdraws.index') }}">Withdraw</a>
+                    </li>
                 </ul>
             </div>
         </li>
