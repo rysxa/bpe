@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Inventory\DepositController;
+use App\Http\Controllers\Inventory\WithdrawController;
+use App\Http\Controllers\Management\ProductController;
 use App\Http\Controllers\Management\StockController;
 use App\Http\Controllers\Management\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -33,10 +35,10 @@ Route::prefix('/')->middleware('auth')->group(function () {
             Route::put('/update', [UserController::class, 'update'])->name('update');
             Route::delete('/delete', [UserController::class, 'destroy'])->name('delete');
         });
-        Route::resource('stocks', StockController::class);
     });
     Route::prefix('/inventory')->name('inventory.')->group(function () {
         Route::resource('deposits', DepositController::class);
-        Route::resource('withdraws', DepositController::class);
+        Route::resource('withdraws', WithdrawController::class);
+        Route::resource('products', ProductController::class);
     });
 });

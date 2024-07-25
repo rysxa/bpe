@@ -1,30 +1,30 @@
 <?php
 
-namespace App\Http\Controllers\Inventory;
+namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
-use App\Models\Deposits;
+use App\Models\Products;
 use Illuminate\Http\Request;
 
-class DepositController extends Controller
+class ProductController extends Controller
 {
     protected $title;
     public function __construct()
     {
-        $this->title = 'Deposit';
+        $this->title = 'Product';
     }
 
     public function index()
     {
         $title = $this->title;
-        $stocks = Deposits::all();
-        return view('inventory.deposit.index', compact('stocks', 'title'));
+        $data = Products::all();
+        return view('management.product.index', compact('data', 'title'));
     }
 
     public function create()
     {
         $title = $this->title;
-        return view('inventory.deposit.create', compact('title'));
+        return view('management.product.create', compact('title'));
     }
 
     public function store(Request $request)
@@ -35,31 +35,31 @@ class DepositController extends Controller
             'price' => 'required|numeric'
         ]);
 
-        Deposits::insert([
+        Products::insert([
             'name' => $request->name,
             'qty' => intval($request->qty),
             'price' => intval($request->price),
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-        return redirect()->route('inventory.deposits.index')->with('success', 'Deposit created successfully.');
+        return redirect()->route('management.products.index')->with('success', $this->title . ' created successfully.');
     }
 
     public function show()
     {
         $title = $this->title;
-        $stock = Deposits::find(request()->deposit);
-        return view('inventory.deposit.show', compact('stock', 'title'));
+        $stock = Products::find(request()->withdraw);
+        return view('management.product.show', compact('stock', 'title'));
     }
 
     public function edit()
     {
         $title = $this->title;
-        $stock = Deposits::find(request()->deposit);
-        return view('inventory.deposit.edit', compact('stock', 'title'));
+        $stock = Products::find(request()->withdraw);
+        return view('management.product.edit', compact('stock', 'title'));
     }
 
-    public function update(Request $request, Deposits $stock)
+    public function update(Request $request, Products $stock)
     {
         $request->validate([
             'name' => 'required',
@@ -69,12 +69,12 @@ class DepositController extends Controller
         ]);
 
         $stock->update($request->all());
-        return redirect()->route('inventory.deposits.index')->with('success', 'Stock updated successfully.');
+        return redirect()->route('management.products.index')->with('success', $this->title . ' updated successfully.');
     }
 
-    public function destroy(Deposits $stock)
+    public function destroy(Products $stock)
     {
         $stock->delete();
-        return redirect()->route('inventory.deposits.index')->with('success', 'Stock deleted successfully.');
+        return redirect()->route('management.products.index')->with('success', $this->title . ' deleted successfully.');
     }
 }

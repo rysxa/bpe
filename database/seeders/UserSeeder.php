@@ -21,7 +21,9 @@ class UserSeeder extends Seeder
             'email' => 'admin@bpe.com',
             'password' => Hash::make('12345678'),
             'role_id' => 1,
-            'status' => 1
+            'status' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         User::create([
@@ -29,7 +31,9 @@ class UserSeeder extends Seeder
             'email' => 'owner@bpe.com',
             'password' => Hash::make('12345678'),
             'role_id' => 2,
-            'status' => 1
+            'status' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         User::create([
@@ -37,7 +41,9 @@ class UserSeeder extends Seeder
             'email' => 'manager@bpe.com',
             'password' => Hash::make('12345678'),
             'role_id' => 3,
-            'status' => 1
+            'status' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         User::create([
@@ -45,7 +51,9 @@ class UserSeeder extends Seeder
             'email' => 'doctor@bpe.com',
             'password' => Hash::make('12345678'),
             'role_id' => 4,
-            'status' => 1
+            'status' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 }

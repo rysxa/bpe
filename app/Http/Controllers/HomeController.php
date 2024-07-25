@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Deposits;
+use App\Models\Withdraws;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // $depositTotalPrice = Deposits::sum('price');
+        // $depositTotalQty = Deposits::sum('qty');
+        // $withdrawTotalPrice = Withdraws::sum('price');
+        // $withdrawTotalQty = Withdraws::sum('qty');
+        // $totalPrice = $depositTotalPrice - $withdrawTotalPrice;
+        // $totalQty = $depositTotalQty - $withdrawTotalQty;
+        // dd($totalPrice, $totalQty);
         return view('home');
     }
 }

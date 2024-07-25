@@ -16,7 +16,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/home">
+            <a class="nav-link" href="/">
                 <span class="menu-title">Dashboard</span>
                 <i class="mdi mdi-home menu-icon"></i>
             </a>
@@ -32,9 +32,6 @@
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('management.user.index') }}">Users</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('management.stocks.index') }}">Stocks</a>
                     </li>
                 </ul>
             </div>

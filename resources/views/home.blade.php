@@ -19,7 +19,7 @@
                     <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">Stocks <i class="mdi mdi-ambulance mdi-24px float-end"></i>
                     </h4>
-                    <h2 class="mb-5">5741</h2>
+                    <h2 class="mb-5">{{ '-' }}</h2>
                     <h6 class="card-text">P3K</h6>
                 </div>
             </div>

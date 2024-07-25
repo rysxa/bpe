@@ -9,10 +9,5 @@ class Deposits extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'id',
-        'name',
-        'qty',
-        'price'
-    ];
+    protected $guarded = [];
 }
