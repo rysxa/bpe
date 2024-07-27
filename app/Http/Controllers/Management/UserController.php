@@ -7,17 +7,24 @@ use App\Models\Roles;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Helpers\Constant;
+use App\Libraries\Role;
 
 class UserController extends Controller
 {
     public function index()
     {
+        Role::RoleSuperAdmin();
+
         $user = User::all();
         return view('management.user.index', compact('user'));
     }
 
     public function edit()
     {
+        Role::RoleSuperAdmin();
+
         $role = Roles::all();
         $user = User::find(request()->id);
         if (!$user) {
@@ -29,6 +36,8 @@ class UserController extends Controller
 
     public function update()
     {
+        Role::RoleSuperAdmin();
+
         $validatedData = request()->validate([
             'name' => 'required',
             'email' => 'required|email',
@@ -51,6 +60,8 @@ class UserController extends Controller
     
     public function destroy()
     {
+        Role::RoleSuperAdmin();
+        
         $user = User::find(request()->id);
         if (!$user) {
             abort(404);

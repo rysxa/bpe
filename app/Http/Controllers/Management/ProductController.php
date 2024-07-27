@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Management;
 use App\Http\Controllers\Controller;
 use App\Models\Products;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Helpers\Constant;
+use App\Libraries\Role;
 
 class ProductController extends Controller
 {
@@ -13,9 +16,11 @@ class ProductController extends Controller
     {
         $this->title = 'Product';
     }
-
+    
     public function index()
     {
+        Role::RoleUserActive();
+        
         $title = $this->title;
         $data = Products::all();
         return view('management.product.index', compact('data', 'title'));
@@ -23,12 +28,16 @@ class ProductController extends Controller
 
     public function create()
     {
+        Role::RoleUserActive();
+
         $title = $this->title;
         return view('management.product.create', compact('title'));
     }
 
     public function store(Request $request)
     {
+        Role::RoleUserActive();
+
         $request->validate([
             'name' => 'required',
             'capital_price' => 'required|integer',
@@ -52,6 +61,8 @@ class ProductController extends Controller
 
     public function show()
     {
+        Role::RoleUserActive();
+
         $title = $this->title;
         $stock = Products::find(request()->product);
         return view('management.product.show', compact('stock', 'title'));
@@ -59,6 +70,8 @@ class ProductController extends Controller
 
     public function edit()
     {
+        Role::RoleSuperAdmin();
+
         $title = $this->title;
         $stock = Products::find(request()->product);
         return view('management.product.edit', compact('stock', 'title'));
@@ -66,6 +79,8 @@ class ProductController extends Controller
 
     public function update(Request $request)
     {
+        Role::RoleSuperAdmin();
+
         $request->validate([
             'name' => 'required',
             'capital_price' => 'required|integer',
@@ -90,6 +105,8 @@ class ProductController extends Controller
 
     public function destroy()
     {
+        Role::RoleSuperAdmin();
+        
         $stock = Products::find(request()->product);
         if (!$stock) {
             abort(404);

@@ -36,6 +36,7 @@
             </div>
         </div>
     </div> --}}
+    <x-modal.popup></x-modal.popup>
     <div class="row">
         @foreach ($totalQty as $productName => $data)
             @php

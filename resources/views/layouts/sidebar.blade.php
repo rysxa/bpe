@@ -21,42 +21,46 @@
                 <i class="mdi mdi-home menu-icon"></i>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#management-nav" aria-expanded="false"
-                aria-controls="management-nav">
-                <span class="menu-title">Management</span>
-                <i class="menu-arrow"></i>
-                <i class="mdi mdi-users menu-icon"></i>
-            </a>
-            <div class="collapse" id="management-nav">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('management.user.index') }}">Users</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('management.products.index') }}">Products</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#inventory-nav" aria-expanded="false"
-                aria-controls="inventory-nav">
-                <span class="menu-title">Inventory</span>
-                <i class="menu-arrow"></i>
-                <i class="mdi mdi-users menu-icon"></i>
-            </a>
-            <div class="collapse" id="inventory-nav">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('inventory.deposits.index') }}">Deposit</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('inventory.withdraws.index') }}">Withdraw</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
+        @if (\App\Libraries\Role::RoleMenuSuperAdmin())    
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#management-nav" aria-expanded="false"
+                    aria-controls="management-nav">
+                    <span class="menu-title">Management</span>
+                    <i class="menu-arrow"></i>
+                    <i class="mdi mdi-users menu-icon"></i>
+                </a>
+                <div class="collapse" id="management-nav">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('management.user.index') }}">Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('management.products.index') }}">Products</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        @endif
+        @if (\App\Libraries\Role::RoleMenuUserActive())    
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#inventory-nav" aria-expanded="false"
+                    aria-controls="inventory-nav">
+                    <span class="menu-title">Inventory</span>
+                    <i class="menu-arrow"></i>
+                    <i class="mdi mdi-users menu-icon"></i>
+                </a>
+                <div class="collapse" id="inventory-nav">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('inventory.deposits.index') }}">Deposit</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('inventory.withdraws.index') }}">Withdraw</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        @endif
     </ul>
 </nav>
 <!-- partial -->

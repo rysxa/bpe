@@ -17,8 +17,7 @@
                                     {{ $items->name }}</option>
                             @endforeach
                         </x-form.select>
-                            <x-form.input name="qty" label="Quantity" valueId="{{ $stock->qty }}" />
-                        <x-form.input name="price" label="Price" valueId="{{ $stock->m_product->deposit_price }}" />
+                        <x-form.input name="qty" label="Quantity" valueId="{{ $stock->qty }}" />
                         <x-button.submit />
                     </form>
                 </div>

@@ -7,6 +7,7 @@ use App\Models\Products;
 use App\Models\Withdraws;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Libraries\Role;
 
 class WithdrawController extends Controller
 {
@@ -18,6 +19,7 @@ class WithdrawController extends Controller
 
     public function index()
     {
+        Role::RoleUserActive();
         $title = $this->title;
         $stocks = Withdraws::all();
         return view('inventory.withdraw.index', compact('stocks', 'title'));
@@ -25,6 +27,7 @@ class WithdrawController extends Controller
 
     public function create()
     {
+        Role::RoleUserActive();
         $title = $this->title;
         $product = Products::all();
         return view('inventory.withdraw.create', compact('title', 'product'));
@@ -32,6 +35,8 @@ class WithdrawController extends Controller
 
     public function store(Request $request)
     {
+        Role::RoleUserActive();
+
         $request->validate([
             'qty' => 'required|integer',
         ]);
@@ -48,6 +53,8 @@ class WithdrawController extends Controller
 
     public function show()
     {
+        Role::RoleUserActive();
+        
         $title = $this->title;
         $stock = Withdraws::find(request()->withdraw);
         return view('inventory.withdraw.show', compact('stock', 'title'));
@@ -63,6 +70,8 @@ class WithdrawController extends Controller
 
     public function update(Request $request)
     {
+        Role::RoleSuperAdmin();
+
         $request->validate([
             'qty' => 'required|integer',
             'product' => 'required|exists:products,id'
@@ -73,7 +82,7 @@ class WithdrawController extends Controller
         $stock->update([
             'user_id' => Auth::id(),
             'product_id' => $request->product,
-            'qty' => $request->qty,
+            'qty' => intval($request->qty),
             'updated_at' => now(),
         ]);
         return redirect()->route('inventory.withdraws.index')->with('success', $this->title . ' updated successfully.');
@@ -81,6 +90,8 @@ class WithdrawController extends Controller
 
     public function destroy()
     {
+        Role::RoleSuperAdmin();
+
         $stock = Withdraws::find(request()->withdraw);
         if (!$stock) {
             abort(404);
