@@ -48,16 +48,5 @@ class UserSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-
-        User::create([
-            'name' => 'Doctor',
-            'email' => 'doctor@bpe.com',
-            'password' => Hash::make('12345678'),
-            'role_id' => 4,
-            'status' => 1,
-            'image' => 'default.png',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
     }
 }

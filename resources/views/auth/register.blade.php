@@ -7,16 +7,14 @@
                 <div class="row flex-grow">
                     <div class="col-lg-4 mx-auto">
                         <div class="auth-form-light text-left p-5">
-                            <div class="brand-logo">
-                                <img src="../../assets/images/logo.svg">
+                            <div class="brand-logo text-center">
+                                <img src="../../assets/images/logo.png">
                             </div>
                             <h4>{{ __('Register') }}</h4>
                             <h6 class="font-weight-light">Sign in to continue.</h6>
                             <form class="pt-3" method="POST" method="POST" action="{{ route('register') }}">
                                 @csrf
                                 
-                                <input name="role" value="99" hidden>
-                                <input name="status" value="0" hidden>
                                 <div class="form-group">
                                     <input type="text"
                                         class="form-control form-control-lg @error('name') is-invalid @enderror"

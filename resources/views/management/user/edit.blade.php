@@ -18,19 +18,22 @@
                     <input type="text" name="password" value="{{ old('password', $user->password) }}" hidden>
                     <x-form.input name="name" label="Name" valueId="{{ $user->name }}" />
                     <x-form.input name="email" label="Email" type="email" valueId="{{ $user->email }}" />
-                    <x-form.select name="status" label="Status">
-                        <option value="1" {{ $user->status == '1' ? 'selected' : '' }}>Active</option>
-                        <option value="0" {{ $user->status == '0' ? 'selected' : '' }}>Not Active</option>
-                    </x-form.select>
-                    <x-form.select name="role" label="Role">
-                        @foreach ($role as $items)
-                            <option value="{{ $items->id }}" {{ $user->role_id == $items->id ? 'selected' : '' }}>
-                                {{ $items->name }}</option>
-                        @endforeach
-                    </x-form.select>
-
-                    <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
-                    <button class="btn btn-light">Cancel</button>
+                    @if ($user->id != 1)
+                        <x-form.select name="status" label="Status">
+                            <option value="1" {{ $user->status == '1' ? 'selected' : '' }}>Active</option>
+                            <option value="0" {{ $user->status == '0' ? 'selected' : '' }}>Not Active</option>
+                        </x-form.select>
+                        <x-form.select name="role" label="Role">
+                            @foreach ($role as $items)
+                                <option value="{{ $items->id }}" {{ $user->role_id == $items->id ? 'selected' : '' }}>
+                                    {{ $items->name }}</option>
+                            @endforeach
+                        </x-form.select>
+                    @else
+                        <input type="text" name="role" value="{{ old('role') }}" hidden>
+                        <input type="text" name="status" value="{{ old('status') }}" hidden>
+                    @endif
+                    <x-button.submit />
                 </form>
             </div>
         </div>

@@ -21,13 +21,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/health-check', function () {
-    return response()->json(['status' => 'healthy'], 200);
-});
+// Route::get('/health-check', function () {
+//     return response()->json(['status' => 'healthy'], 200);
+// });
 
 Auth::routes();
-// Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
 
 Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');

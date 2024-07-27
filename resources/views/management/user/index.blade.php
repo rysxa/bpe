@@ -36,9 +36,10 @@
                                         <td>{!! \App\Libraries\Utils::u_Date($item->created_at) !!}</td>
                                         <td>{!! \App\Libraries\Status::GetStatus($item->status) !!}</td>
                                         <td>
-                                            <x-button.edit
-                                                url="{{ route('management.user.edit', ['id' => $item->id]) }}"></x-button.edit>
-                                            <x-button.delete id="{{ $item->id }}" :url="route('management.user.delete', ['id' => $item->id])"></x-button.delete>
+                                            @if ($item->id != 1 && \App\Libraries\Role::RoleMenuSuperAdmin())
+                                                <x-button.edit url="{{ route('management.user.edit', ['id' => $item->id]) }}"></x-button.edit>
+                                                <x-button.delete id="{{ $item->id }}" :url="route('management.user.delete', ['id' => $item->id])"></x-button.delete>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

@@ -15,11 +15,19 @@ class Role {
         }
     }
 
-    public static function RoleSuperAdmin()
+    public static function RoleAdmin()
     {
         if (Auth::user()->role_id != Constant::RoleAdmin && Auth::user()->role_id != Constant::RoleOwner && Auth::user()->role_id != Constant::RoleManager) {
             abort(403, 'Not Authorized');
         }
+    }
+
+    public static function RoleSuperAdmin()
+    {
+        if (Auth::user()->role_id != Constant::RoleAdmin) {
+            return false;
+        }
+        return true;
     }
 
     public static function RoleMenuSuperAdmin()
