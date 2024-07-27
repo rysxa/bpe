@@ -1,8 +1,8 @@
 <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-        <a class="navbar-brand brand-logo" href="../../index.html"><img src="../../assets/images/logo.svg"
+        <a class="navbar-brand brand-logo" href="/"><img src="../../assets/images/logo.png"
                 alt="logo" /></a>
-        <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../../assets/images/logo-mini.svg"
+        <a class="navbar-brand brand-logo-mini" href="/"><img src="../../assets/images/logo-mini.svg"
                 alt="logo" /></a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-stretch">
@@ -14,7 +14,7 @@
                 <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     <div class="nav-profile-img">
-                        <img src="../../assets/images/faces/face1.jpg" alt="image">
+                        <img src="{{ asset('assets/images/profile/' . Auth::user()->image) }}" alt="image">
                         <span class="availability-status online"></span>
                     </div>
                     <div class="nav-profile-text">
@@ -30,7 +30,7 @@
 
                     <form class="dropdown-item" method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="button" class="mdi mdi-logout me-2 text-primary" onclick="alert('yeah')">
+                        <button type="submit" class="mdi mdi-logout me-2 text-primary">
                             {{ __('Logout') }}
                         </button>
                     </form>

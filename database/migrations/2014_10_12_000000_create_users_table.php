@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->bigInteger('role_id')->unsigned();
             $table->integer('status');
+            $table->string('image');
             $table->rememberToken();
             $table->timestamps();
 

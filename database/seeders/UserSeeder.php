@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('12345678'),
             'role_id' => 1,
             'status' => 1,
+            'image' => 'default.png',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -32,6 +33,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('12345678'),
             'role_id' => 2,
             'status' => 1,
+            'image' => 'default.png',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -42,6 +44,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('12345678'),
             'role_id' => 3,
             'status' => 1,
+            'image' => 'default.png',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -52,6 +55,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('12345678'),
             'role_id' => 4,
             'status' => 1,
+            'image' => 'default.png',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
