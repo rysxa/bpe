@@ -23,6 +23,6 @@ class Utils {
 
     public static function u_Price($number)
     {
-        return '$ ' . number_format($number, 0, ',', '.');
+        return '$ ' . number_format(intval($number), 0, ',', '.');
     }
 }

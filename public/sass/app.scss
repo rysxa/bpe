@@ -1,0 +1,18 @@
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+// Vendors
+@import '../vendors/mdi/css/materialdesignicons.min.css';
+@import '../vendors/ti-icons/css/themify-icons.css';
+@import '../vendors/css/vendor.bundle.base.css';
+@import '../vendors/font-awesome/css/font-awesome.min.css';
+@import '../css/style.css';
+
+// @import "~datatables.net-bs5/css/dataTables.bootstrap5.css";
+// @import "~datatables.net-buttons-bs5/css/buttons.bootstrap5.css";

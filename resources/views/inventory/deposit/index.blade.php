@@ -46,3 +46,10 @@
         </div>
     @endif
 @endsection
+@push('scripts')
+    <script>
+         $(document).ready( function () {
+            $('.table').DataTable();
+        } );
+    </script>
+@endpush

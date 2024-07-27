@@ -10,6 +10,7 @@ export default defineConfig({
                 'resources/sass/app.scss',
                 'resources/js/app.js',
                 'resources/vendors/js/vendor.bundle.base.js',
+                'resources/js/vendor/jquery-3.7.1.min.js',
             ],
             refresh: true,
         }),

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\Constant;
 use App\Libraries\Role;
+use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
 {

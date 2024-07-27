@@ -22,17 +22,11 @@
                     </div>
                 </a>
                 <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                    <a class="dropdown-item" href="#">
-                        <i class="mdi mdi-cached me-2 text-success"></i> Profile </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">
-                        <i class="mdi mdi-logout me-2 text-primary"></i> Logout </a>
-
-                    <form class="dropdown-item" method="POST" action="{{ route('logout') }}">
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="mdi mdi-logout me-2 text-danger"></i> Logout
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
-                        <button type="submit" class="mdi mdi-logout me-2 text-primary">
-                            {{ __('Logout') }}
-                        </button>
                     </form>
                 </div>
             </li>

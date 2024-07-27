@@ -57,41 +57,9 @@
     @endif
 @endsection
 @push('scripts')
-{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
-<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        $('#withdrawTable').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: "{{ route('inventory.withdraws.index') }}",
-            columns: [
-                { data: 'm_user.name', name: 'm_user.name' },
-                { data: 'm_product.name', name: 'm_product.name' },
-                { data: 'qty', name: 'qty' },
-                { 
-                    data: 'm_product.deposit_price', 
-                    name: 'm_product.deposit_price',
-                    render: function(data) {
-                        return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(data);
-                    }
-                },
-                {
-                    data: 'id',
-                    name: 'action',
-                    orderable: false,
-                    searchable: false,
-                    render: function(data) {
-                        return `
-                            <x-button.show url="${route('inventory.withdraws.show', data)}"></x-button.show>
-                            <x-button.edit url="${route('inventory.withdraws.edit', data)}"></x-button.edit>
-                            <x-button.delete id="${data}" url="${route('inventory.withdraws.destroy', data)}"></x-button.delete>
-                        `;
-                    }
-                }
-            ]
-        });
-    });
-</script>
+    <script>
+         $(document).ready( function () {
+            $('.table').DataTable();
+        } );
+    </script>
 @endpush

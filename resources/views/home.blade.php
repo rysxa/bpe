@@ -56,22 +56,26 @@
                     <h4 class="font-weight-normal mb-3">{{ $productName }} <i class="fa fa-{{ $icon }} mdi-24px float-end"></i>
                     </h4>
                     @if ($quantity < 0)
-                        <h2 class="mb-5">{{ $quantity }}</h2>
+                        <h2 class="mb-3">{{ $quantity }}</h2>
                         <h6 class="card-text">Minus Stock</h6>
                     @elseif ($quantity == 0)
-                        <h2 class="mb-5">{{ $quantity }}</h2>
+                        <h2 class="mb-3">{{ $quantity }}</h2>
                         <h6 class="card-text">Empty Stocks</h6>
                     @elseif ($quantity <= 200)
-                        <h2 class="mb-5">{{ $quantity }}</h2>
+                        <h2 class="mb-3">{{ $quantity }}</h2>
                         <h6 class="card-text">Almost out of Stock</h6>
                     @else
-                        <h2 class="mb-5">{{ $quantity }}</h2>
+                        <h2 class="mb-3">{{ $quantity }}</h2>
                         <h6 class="card-text">Available Stock</h6>
                     @endif
                     <small>{{ now() }}</small>
                 </div>
             </div>
         </div>
+        @if ($loop->iteration % 5 == 0)
+            </div>
+            <div class="row">
+        @endif
         @endforeach
     </div>
 @endsection

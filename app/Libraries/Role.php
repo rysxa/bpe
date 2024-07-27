@@ -17,7 +17,7 @@ class Role {
 
     public static function RoleSuperAdmin()
     {
-        if (Auth::user()->role_id != Constant::RoleAdmin || Auth::user()->role_id != Constant::RoleOwner || Auth::user()->role_id != Constant::RoleManager) {
+        if (Auth::user()->role_id != Constant::RoleAdmin && Auth::user()->role_id != Constant::RoleOwner && Auth::user()->role_id != Constant::RoleManager) {
             abort(403, 'Not Authorized');
         }
     }

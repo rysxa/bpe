@@ -6,6 +6,7 @@ use App\Http\Controllers\Inventory\WithdrawController;
 use App\Http\Controllers\Management\ProductController;
 use App\Http\Controllers\Management\StockController;
 use App\Http\Controllers\Management\UserController;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,8 @@ Route::get('/health-check', function () {
 });
 
 Auth::routes();
+// Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
 
 Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');

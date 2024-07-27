@@ -27,21 +27,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($user as $item)
-                                        <tr>
-                                            <td>{{ $item->name }}</td>
-                                            <td>{{ $item->email }}</td>
-                                            <td>{{ $item->m_roles->name }}</td>
-                                            <td>{!! \App\Libraries\Utils::u_Date($item->created_at) !!}</td>
-                                            <td>{!! \App\Libraries\Status::GetStatus($item->status) !!}</td>
-                                            <td>
-                                                <x-button.edit
-                                                    url="{{ route('management.user.edit', ['id' => $item->id]) }}"></x-button.edit>
-                                                <x-button.delete id="{{ $item->id }}" :url="route('management.user.delete', ['id' => $item->id])"></x-button.delete>
-                                            </td>
-                                        </tr>
-                                    @endforeach
                                 </tbody>
+                                @foreach ($user as $item)
+                                    <tr>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->email }}</td>
+                                        <td>{{ $item->m_roles->name }}</td>
+                                        <td>{!! \App\Libraries\Utils::u_Date($item->created_at) !!}</td>
+                                        <td>{!! \App\Libraries\Status::GetStatus($item->status) !!}</td>
+                                        <td>
+                                            <x-button.edit
+                                                url="{{ route('management.user.edit', ['id' => $item->id]) }}"></x-button.edit>
+                                            <x-button.delete id="{{ $item->id }}" :url="route('management.user.delete', ['id' => $item->id])"></x-button.delete>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </table>
                         </div>
                     </div>
@@ -50,3 +50,10 @@
         </div>
     @endif
 @endsection
+@push('scripts')
+    <script>
+         $(document).ready( function () {
+            $('.table').DataTable();
+        } );
+    </script>
+@endpush

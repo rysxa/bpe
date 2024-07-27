@@ -5,14 +5,18 @@
  */
 
 import $ from 'jquery';
-import './bootstrap';
-import { createApp } from 'vue';
-
-// import 'bootstrap';
+import 'bootstrap'; // Pastikan bootstrap diimpor setelah jQuery
+import 'bootstrap/dist/css/bootstrap.min.css'; // Tambahkan ini untuk mengimpor CSS Bootstrap
 
 // initiate
 window.$ = window.jQuery = $;
-window.bootstrap = bootstrap;
+window.bootstrap = require('bootstrap'); // Ubah ini untuk memastikan bootstrap terinisialisasi
+import { createApp } from 'vue';
+
+
+// initiate
+// window.$ = window.jQuery = $;
+// window.bootstrap = bootstrap;
 // import $ from 'jquery';
 // import 'jquery';
 
