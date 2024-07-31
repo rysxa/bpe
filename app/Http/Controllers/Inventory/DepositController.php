@@ -14,22 +14,13 @@ class DepositController extends Controller
     protected $title;
     public function __construct()
     {
-       
+        $this->middleware(['auth', 'check.status']);
         $this->title = 'Deposit';
-        // $this->middleware(function ($request, $next) {
-        //     if (!session()->has('user') || !session()->get('user')->hasRole(['Doctor', 'owner', 'manager'])) {
-        //         return redirect('/')->with('error', 'You do not have permission to access this page.');
-        //     }
-        //     return $next($request);
-        // });
-        // if (!Auth::user()->hasRole([Constant::RoleAdmin, Constant::RoleOwner, Constant::RoleManager])) {
-        //     abort(403);
-        // }
     }
 
     public function index()
     {
-        Role::RoleUserActive();
+        Role::RoleAccessUserActive();
 
         $title = $this->title;
         $stocks = Deposits::all();
@@ -38,7 +29,7 @@ class DepositController extends Controller
 
     public function create()
     {
-        Role::RoleUserActive();
+        Role::RoleAccessUserActive();
 
         $title = $this->title;
         $product = Products::all();
@@ -48,7 +39,7 @@ class DepositController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        Role::RoleUserActive();
+        Role::RoleAccessUserActive();
 
         $request->validate([
             'qty' => 'required|integer'
@@ -66,7 +57,7 @@ class DepositController extends Controller
 
     public function show()
     {
-        Role::RoleUserActive();
+        Role::RoleAccessUserActive();
 
         $title = $this->title;
         $stock = Deposits::find(request()->deposit);

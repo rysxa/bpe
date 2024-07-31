@@ -25,9 +25,9 @@ use Illuminate\Support\Facades\Route;
 //     return response()->json(['status' => 'healthy'], 200);
 // });
 
-Auth::routes();
+Auth::routes(['middleware' => ['auth', 'check.status']]);
 
-Route::prefix('/')->middleware('auth')->group(function () {
+Route::prefix('/')->middleware('auth', 'check.status')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::prefix('/management')->name('management.')->group(function () {
         Route::prefix('/user')->name('user.')->group(function () {

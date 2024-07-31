@@ -14,12 +14,13 @@ class WithdrawController extends Controller
     protected $title;
     public function __construct()
     {
+        $this->middleware(['auth', 'check.status']);
         $this->title = 'Withdraw';
     }
 
     public function index()
     {
-        Role::RoleUserActive();
+        Role::RoleAccessUserActive();
         $title = $this->title;
         $stocks = Withdraws::all();
         return view('inventory.withdraw.index', compact('stocks', 'title'));
@@ -27,7 +28,7 @@ class WithdrawController extends Controller
 
     public function create()
     {
-        Role::RoleUserActive();
+        Role::RoleAccessUserActive();
         $title = $this->title;
         $product = Products::all();
         return view('inventory.withdraw.create', compact('title', 'product'));
@@ -35,7 +36,7 @@ class WithdrawController extends Controller
 
     public function store(Request $request)
     {
-        Role::RoleUserActive();
+        Role::RoleAccessUserActive();
 
         $request->validate([
             'qty' => 'required|integer',
@@ -53,7 +54,7 @@ class WithdrawController extends Controller
 
     public function show()
     {
-        Role::RoleUserActive();
+        Role::RoleAccessUserActive();
         
         $title = $this->title;
         $stock = Withdraws::find(request()->withdraw);

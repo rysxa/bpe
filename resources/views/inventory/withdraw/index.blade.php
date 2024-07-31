@@ -1,18 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    @if (\App\Libraries\Role::RoleMenuUserActive())  
+    @if (\App\Libraries\Role::RoleUserActive())
         <div class="container">
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    <p>{{ $message }}</p>
-                </div>
-            @endif
-            @if ($message = Session::get('error'))
-                <div class="alert alert-danger">
-                    <p>{{ $message }}</p>
-                </div>
-            @endif
+            <x-modal.popup></x-modal.popup>
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
@@ -39,10 +30,11 @@
                                             <td>
                                                 <x-button.show
                                                     url="{{ route('inventory.withdraws.show', ['withdraw' => $item->id]) }}"></x-button.show>
-                                                @if (\App\Libraries\Role::RoleMenuSuperAdmin())  
+                                                @if (\App\Libraries\Role::RoleAdmin())
                                                     <x-button.edit
-                                                    url="{{ route('inventory.withdraws.edit', $item->id) }}"></x-button.edit>
-                                                    <x-button.delete id="{{ $item->id }}" url="{{ route('inventory.withdraws.destroy', ['withdraw' => $item->id]) }}"></x-button.delete>
+                                                        url="{{ route('inventory.withdraws.edit', $item->id) }}"></x-button.edit>
+                                                    <x-button.delete id="{{ $item->id }}"
+                                                        url="{{ route('inventory.withdraws.destroy', ['withdraw' => $item->id]) }}"></x-button.delete>
                                                 @endif
                                             </td>
                                         </tr>
@@ -58,8 +50,8 @@
 @endsection
 @push('scripts')
     <script>
-         $(document).ready( function () {
+        $(document).ready(function() {
             $('.table').DataTable();
-        } );
+        });
     </script>
 @endpush

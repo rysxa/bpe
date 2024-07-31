@@ -10,10 +10,17 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\Constant;
 use App\Libraries\Role;
+use App\Models\Deposits;
+use App\Models\Withdraws;
 use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'check.status']);
+    }
+
     public function index()
     {
         Role::RoleSuperAdmin();
@@ -68,7 +75,11 @@ class UserController extends Controller
             abort(404);
         }
 
-        $user->delete();
+        if (Deposits::where('user_id', $user->id)->exists() || Withdraws::where('user_id', $user->id)->exists()) {
+            return redirect()->route('management.products.index')->with('error', 'Products cannot be deleted as they are associated with transactions.');
+        } else {
+            $user->delete();
+        }
 
         return redirect()->route('management.user.index');
     }

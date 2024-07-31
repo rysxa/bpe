@@ -11,7 +11,7 @@
                         <x-form.read name="capital_price" label="EMS Price" valueId="{!! \App\Libraries\Utils::u_Price($stock->capital_price) !!}" />
                         <x-form.read name="deposit_price" label="Clinic Price" valueId="{!! \App\Libraries\Utils::u_Price($stock->deposit_price) !!}" />
                         <x-form.read name="sales_price" label="Sales Price" valueId="{!! \App\Libraries\Utils::u_Price($stock->sales_price) !!}" />
-                        <x-form.read name="icon" label="Icon" valueId="{!! \App\Libraries\Utils::u_Price($stock->icon) !!}" />
+                        <x-form.read name="icon" label="Icon" valueId="{{ $stock->icon }}" />
                         <x-button.back url="{{ route('management.products.index') }}" />
                     </form>
                 </div>

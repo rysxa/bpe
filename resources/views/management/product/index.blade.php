@@ -1,13 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    @if (\App\Libraries\Role::RoleMenuUserActive())
+    @if (\App\Libraries\Role::RoleUserActive())
         <div class="container">
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    <p>{{ $message }}</p>
-                </div>
-            @endif
+            <x-modal.popup></x-modal.popup>
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
@@ -36,7 +32,10 @@
                                                     url="{{ route('management.products.show', ['product' => $item->id]) }}"></x-button.show>
                                                 <x-button.edit
                                                     url="{{ route('management.products.edit', $item->id) }}"></x-button.edit>
-                                                <x-button.delete id="{{ $item->id }}" :url="route('management.products.destroy', ['product' => $item->id])"></x-button.delete>
+                                                <x-button.delete id="{{ $item->id }}"
+                                                    :url="route('management.products.destroy', [
+                                                        'product' => $item->id,
+                                                    ])"></x-button.delete>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -51,8 +50,8 @@
 @endsection
 @push('scripts')
     <script>
-         $(document).ready( function () {
+        $(document).ready(function() {
             $('.table').DataTable();
-        } );
+        });
     </script>
 @endpush

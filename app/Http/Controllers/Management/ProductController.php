@@ -8,18 +8,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\Constant;
 use App\Libraries\Role;
+use App\Models\Deposits;
+use App\Models\Withdraws;
 
 class ProductController extends Controller
 {
     protected $title;
     public function __construct()
     {
+        $this->middleware(['auth', 'check.status']);
         $this->title = 'Product';
     }
     
     public function index()
     {
-        Role::RoleUserActive();
+        Role::RoleAccessUserActive();
         
         $title = $this->title;
         $data = Products::all();
@@ -28,7 +31,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        Role::RoleUserActive();
+        Role::RoleAccessUserActive();
 
         $title = $this->title;
         return view('management.product.create', compact('title'));
@@ -36,7 +39,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        Role::RoleUserActive();
+        Role::RoleAccessUserActive();
 
         $request->validate([
             'name' => 'required',
@@ -61,7 +64,7 @@ class ProductController extends Controller
 
     public function show()
     {
-        Role::RoleUserActive();
+        Role::RoleAccessUserActive();
 
         $title = $this->title;
         $stock = Products::find(request()->product);
@@ -112,7 +115,11 @@ class ProductController extends Controller
             abort(404);
         }
 
-        $stock->delete();
+        if (Deposits::where('product_id', $stock->id)->exists() || Withdraws::where('product_id', $stock->id)->exists()) {
+            return redirect()->route('management.products.index')->with('error', 'Products cannot be deleted as they are associated with transactions.');
+        } else {
+            $stock->delete();
+        }
         return redirect()->route('management.products.index')->with('success', $this->title . ' deleted successfully.');
     }
 }

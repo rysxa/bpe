@@ -64,6 +64,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if (!env('APP_REGISTER')) {
+            abort(404);
+        }
+        
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -72,11 +76,6 @@ class RegisterController extends Controller
             'status' => 0,
             'image' => 'default.png',
         ]);
-
-        if ($user->status != 1) {
-            Auth::logout();
-            return redirect()->route('login')->withErrors(['status' => 'Akun Anda belum aktif. Silakan tunggu aktivasi.']);
-        }
 
         return $user;
     }

@@ -12,7 +12,8 @@
                     <span class="font-weight-bold mb-2">{{ Auth::user()->name }}</span>
                     <span class="text-secondary text-small">{{ Auth::user()->m_roles->name }}</span>
                 </div>
-                <i class="mdi mdi-bookmark-check text-{{ Auth::user()->status == 1 ? 'success' : 'danger' }} nav-profile-badge"></i>
+                <i
+                    class="mdi mdi-bookmark-check text-{{ Auth::user()->status == 1 ? 'success' : 'danger' }} nav-profile-badge"></i>
             </a>
         </li>
         <li class="nav-item">
@@ -21,7 +22,7 @@
                 <i class="mdi mdi-home menu-icon"></i>
             </a>
         </li>
-        @if (\App\Libraries\Role::RoleMenuUserActive() && \App\Libraries\Role::RoleMenuSuperAdmin())    
+        @if (\App\Libraries\Role::RoleUserActive() && \App\Libraries\Role::RoleAdmin())
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#management-nav" aria-expanded="false"
                     aria-controls="management-nav">
@@ -41,7 +42,7 @@
                 </div>
             </li>
         @endif
-        @if (\App\Libraries\Role::RoleMenuUserActive())    
+        @if (\App\Libraries\Role::RoleUserActive())
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#inventory-nav" aria-expanded="false"
                     aria-controls="inventory-nav">
