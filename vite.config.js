@@ -9,8 +9,7 @@ export default defineConfig({
             input: [
                 'resources/sass/app.scss',
                 'resources/js/app.js',
-                'resources/vendors/js/vendor.bundle.base.js',
-                'resources/js/vendor/jquery-3.7.1.min.js',
+                'resources/vendors/js/vendor.bundle.base.js'
             ],
             refresh: true,
         }),
