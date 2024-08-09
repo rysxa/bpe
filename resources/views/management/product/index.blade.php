@@ -32,10 +32,8 @@
                                                     url="{{ route('management.products.show', ['product' => $item->id]) }}"></x-button.show>
                                                 <x-button.edit
                                                     url="{{ route('management.products.edit', $item->id) }}"></x-button.edit>
-                                                {{-- <x-button.delete id="{{ $item->id }}"
-                                                    :url="route('management.products.destroy', [
-                                                        'product' => $item->id,
-                                                    ])"></x-button.delete> --}}
+                                                <x-button.delete id="{{ $item->id }}"
+                                                    :url="route('management.products.destroy', ['product' => $item->id])"></x-button.delete>
                                             </td>
                                         </tr>
                                     @endforeach

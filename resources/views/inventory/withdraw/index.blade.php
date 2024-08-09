@@ -33,8 +33,8 @@
                                                 @if (\App\Libraries\Role::RoleAdmin())
                                                     <x-button.edit
                                                         url="{{ route('inventory.withdraws.edit', $item->id) }}"></x-button.edit>
-                                                    {{-- <x-button.delete id="{{ $item->id }}"
-                                                        url="{{ route('inventory.withdraws.destroy', ['withdraw' => $item->id]) }}"></x-button.delete> --}}
+                                                    <x-button.delete id="{{ $item->id }}"
+                                                        url="{{ route('inventory.withdraws.destroy', ['withdraw' => $item->id]) }}"></x-button.delete>
                                                 @endif
                                             </td>
                                         </tr>
