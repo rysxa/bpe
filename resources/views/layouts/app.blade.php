@@ -8,12 +8,16 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ env('APP_NAME') }}</title>
+    <title>{{ config('app.name', 'bpe') }}</title>
     @stack('styles')
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <link href="{{ asset('vendor/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/mdi/css/materialdesignicons.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/ti-icons/css/themify-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/css/vendor.bundle.base.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <link href="https://cdn.datatables.net/v/dt/dt-2.1.2/datatables.min.css" rel="stylesheet">
 
-    <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -45,7 +49,15 @@
             @yield('content')
         @endif
     </div>
+    <script src="{{ asset('vendor/js/vendor.bundle.base.js') }}"></script>
+    <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
+    <script src="{{ asset('assets/js/misc.js') }}"></script>
+    <script src="{{ asset('assets/js/settings.js') }}"></script>
+    <script src="{{ asset('assets/js/todolist.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.cookie.js') }}"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-2.1.2/datatables.min.js"></script>
     @stack('scripts')
+    
 </body>
 
 </html>
