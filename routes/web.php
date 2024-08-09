@@ -21,9 +21,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/health-check', function () {
-//     return response()->json(['status' => 'healthy'], 200);
-// });
+Route::get('/health-check', function () {
+    return response()->json(['status' => 'healthy'], 200);
+});
 
 Auth::routes(['middleware' => ['auth', 'check.status']]);
 
